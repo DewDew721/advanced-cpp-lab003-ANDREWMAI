@@ -17,24 +17,29 @@ DynamicBuffer::DynamicBuffer(size_t capacity) {
 
 // TODO: Implement deep-copy constructor.
 DynamicBuffer::DynamicBuffer(const DynamicBuffer& other) {
+    data_ = new int[other.size_]();
+    size_ = other.size_;
     copyFrom(other);
 }
 
 // TODO: Implement move constructor.
 DynamicBuffer::DynamicBuffer(DynamicBuffer&& other) noexcept {
     swap(other);
+
+    other.data_ = nullptr;
+    other.size_ = 0;
 }
 
 // TODO: Implement destructor with proper cleanup.
 DynamicBuffer::~DynamicBuffer() {
-    release();
+    delete[] data_;
 }
 
 // TODO: Implement copy assignment with self-assignment protection.
 DynamicBuffer& DynamicBuffer::operator=(const DynamicBuffer& other) {
     if (this != &other)
     {
-        release();
+        delete[] data_;
         copyFrom(other);
     }
     
@@ -45,7 +50,7 @@ DynamicBuffer& DynamicBuffer::operator=(const DynamicBuffer& other) {
 DynamicBuffer& DynamicBuffer::operator=(DynamicBuffer&& other) noexcept {
     if (this != &other)
     {
-        release();
+        delete[] data_;
         swap(other);
     }
 
