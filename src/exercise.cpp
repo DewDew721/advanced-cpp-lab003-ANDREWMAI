@@ -55,7 +55,7 @@ DynamicBuffer& DynamicBuffer::operator=(DynamicBuffer&& other) noexcept {
 // TODO: Return the current managed size.
 size_t DynamicBuffer::size() const noexcept {
     
-    return 15;
+    return size_;
 }
 
 // TODO: Return true if the buffer is empty.
