@@ -39,8 +39,14 @@ DynamicBuffer::~DynamicBuffer() {
 DynamicBuffer& DynamicBuffer::operator=(const DynamicBuffer& other) {
     if (this != &other)
     {
-        delete[] data_;
+        int* newData = new int[other.size_]();
+
         copyFrom(other);
+
+        delete[] data_;
+
+        data_ = newData;
+        size_ = other.size_;
     }
     
     return *this;
@@ -51,7 +57,11 @@ DynamicBuffer& DynamicBuffer::operator=(DynamicBuffer&& other) noexcept {
     if (this != &other)
     {
         delete[] data_;
-        swap(other);
+        data_ = other.data_;
+        size_ = other.size_;
+
+        other.data_ = nullptr;
+        other.size_ = 0;
     }
 
     return *this;
