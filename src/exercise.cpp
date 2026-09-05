@@ -4,7 +4,8 @@
 
 // TODO: Implement default constructor.
 DynamicBuffer::DynamicBuffer() {
-    DynamicBuffer(0);
+    data_ = nullptr;
+    size_ = 0;
 }
 
 // TODO: Implement allocation and initialization.
