@@ -10,8 +10,8 @@ DynamicBuffer::DynamicBuffer() {
 // TODO: Implement allocation and initialization.
 // Use a C++ array allocated with new[] and zero-initialize the contents.
 DynamicBuffer::DynamicBuffer(size_t capacity) {
-    DynamicBuffer(capacity);
     data_ = new int[capacity]();
+    size_ = capacity;
 }
 
 // TODO: Implement deep-copy constructor.
